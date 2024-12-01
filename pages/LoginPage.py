@@ -24,14 +24,11 @@ class LoginPage(PlaywrightUtils):
     def navigate_to_login_cars(self):
         self.page.goto("https://cars3test.awninc.com/accounts/login/")
 
-    def navigate_to_login_cars(self):
-        self.page.goto("https://cars3test.awninc.com/accounts/login/")
-
-    def do_login_car(self, username, password):
+    def do_login_car(self, credentials):
         self.page.get_by_placeholder("Enter email").click()
-        self.page.get_by_placeholder("Enter email").fill(username)
+        self.page.get_by_placeholder("Enter email").fill(credentials["username"])
         self.page.get_by_placeholder("Password").click()
-        self.page.get_by_placeholder("Password").fill(password)
+        self.page.get_by_placeholder("Password").fill(credentials["password"])
         self.page.get_by_role("button", name="Login").click()
         self.page.wait_for_load_state()
         expect(self.page.locator("//div[@class='navSlideOutTab']//i")).to_be_visible()

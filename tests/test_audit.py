@@ -1,6 +1,6 @@
 def test_create_dealer_audit(login_page, audit_page):
     login_page.navigate_to_login_cars()
-    login_page.do_login_car("atoshmatova@awninc.com", "test12345")
+    login_page.do_login_car("atoshmatova@awninc.com", "Zokha2610!")
     audit_page.navigate_to_dealer_audit()
     # audit_page.create_dealer_audit()
 

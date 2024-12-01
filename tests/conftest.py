@@ -1,4 +1,5 @@
 # conftest.py
+
 import pytest
 from playwright.sync_api import sync_playwright
 
@@ -9,8 +10,16 @@ from pages.CompliancesPage import CompliancePage
 from pages.EnterDashboardPage import EnterDashboardPage
 from pages.HomePage import HomePage
 from pages.LoginPage import LoginPage
+
 from pages.SchedulesPage import SchedulesPage
+from tests.credential_util import get_credentials
 from utils.plywright_utils import PlaywrightUtils
+
+
+@pytest.fixture(scope="session")
+def browser_context_args(browser_context_args):
+    # This will ignore SSL certificate errors for all tests
+    return {**browser_context_args, "ignore_https_errors": True}
 
 
 @pytest.fixture(scope="session")
@@ -59,3 +68,8 @@ def enterdashboard_page(page):
 @pytest.fixture(scope="function")
 def billing_page(page):
     return BillingPage(page)
+
+
+@pytest.fixture(scope="session")
+def credentials():
+    return get_credentials()
